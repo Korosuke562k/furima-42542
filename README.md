@@ -4,7 +4,7 @@
 
 ## #users テーブル
 
-|  Column               | Type    |  Options   |
+|  Culumn               | Type    |  Options   |
 | --------------------- | ------- | ---------- |
 | name                  | string  | null:false |
 | ruby                  | string  | null:false |
@@ -21,7 +21,7 @@
 
 ## items テーブル
 
-|  Column             | Type       |  Options   |
+|  Culumn             | Type       |  Options   |
 | ------------------- | ---------- | ---------- |
 | name                | string     | null:false |
 | text                | text       | null:false |
@@ -44,7 +44,7 @@
 
 ## Buysテーブル
 
-|  Column             | Type       |  Options   |
+|  Culumn             | Type       |  Options   |
 | ------------------- | ---------- | ---------- |
 | credit_info         | integer    | null:false |
 | post-code           | integer    | null: false |
