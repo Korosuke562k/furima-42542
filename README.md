@@ -7,7 +7,7 @@
 |  Column               | Type    |  Options   |
 | --------------------- | ------- | ---------- |
 | name                  | string  | null:false |
-| furikana              | string  | null:false |
+| ruby                  | string  | null:false |
 | birthday              | integer | null:false |
 | nickname              | string  | null:false |
 | email                 | string  | null:false, unique: true  |
