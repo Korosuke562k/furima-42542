@@ -1,6 +1,6 @@
 # README
 
-# #users テーブル
+## #users テーブル
 
 |  Column               | Type    |  Options   |
 | --------------------- | ------- | ---------- |
