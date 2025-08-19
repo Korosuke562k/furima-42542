@@ -45,7 +45,6 @@
 
 |  Culumn             | Type       |  Options   |
 | ------------------- | ---------- | ---------- |
-| credit_info         | integer    | null:false |
 | post-code           | integer    | null: false |
 | prefecture_id       | references | null: false, foreign_key: true |
 | city                | text       | null:false |
