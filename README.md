@@ -26,11 +26,11 @@
 | ------------------- | ---------- | ---------- |
 | name                | string     | null: false |
 | text                | text       | null: false |
-| category_id         | integer    | null: false, foreign_key: true |
-| status_id           | integer    | null: false, foreign_key: true |
-| delivery_fee_id     | integer    | null: false, foreign_key: true |
-| shipping_address_id | integer    | null: false, foreign_key: true |
-| shipping_days_id    | integer    | null: false, foreign_key: true |
+| category_id         | integer    | null: false |
+| status_id           | integer    | null: false |
+| delivery_fee_id     | integer    | null: false |
+| shipping_address_id | integer    | null: false |
+| shipping_days_id    | integer    | null: false |
 | amount              | integer    | null: false |
 | user                | references | null: false, foreign_key: true |
 
@@ -56,7 +56,7 @@
 |  Culumn             | Type       |  Options   |
 | ------------------- | ---------- | ----------- |
 | post_code           | string     | null: false |
-| prefecture_id       | integer    | null: false, foreign_key: true |
+| shipping_address_id | integer    | null: false |
 | city                | text       | null: false |
 | street              | text       | null: false |
 | buildings_name      | text       |
