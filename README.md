@@ -8,9 +8,8 @@
 | ------------------ | ------- | ----------- |
 | myoji              | string  | null: false |
 | name               | string  | null: false |
-| myoji-kana         | string  | null: false |
-| mei-kana           | string  | null: false |
-| ruby               | string  | null: false |
+| myoji_kana         | string  | null: false |
+| mei_kana           | string  | null: false |
 | birthday           | date    | null: false |
 | nickname           | string  | null: false |
 | email              | string  | null: false, unique: true  |
@@ -36,15 +35,10 @@
 | user                | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to : category
-- belongs_to : status
-- belongs_to : delivery_fee
-- belongs_to : shipping_address
-- belongs_to : shipping_days
 - belongs_to : user
 - has_one : buy
 
-## Buysテーブル
+## buysテーブル
 
 |  Culumn             | Type       |  Options   |
 | ------------------- | ---------- | ----------- |
@@ -57,18 +51,17 @@
 - has_one :address
 
 
-## Addressesテーブル
+## addressesテーブル
 
 |  Culumn             | Type       |  Options   |
 | ------------------- | ---------- | ----------- |
-| post-code           | integer    | null: false |
+| post_code           | string     | null: false |
 | prefecture_id       | integer    | null: false, foreign_key: true |
 | city                | text       | null: false |
 | street              | text       | null: false |
 | buildings_name      | text       |
-| telephone           | integer    | null: false |
+| telephone           | string     | null: false |
 | buy                 | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to : prefecture
 - belongs_to : buy
