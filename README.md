@@ -4,14 +4,17 @@
 
 ## #users テーブル
 
-|  Culumn               | Type    |  Options   |
-| --------------------- | ------- | ---------- |
-| name                  | string  | null:false |
-| ruby                  | string  | null:false |
-| birthday              | integer | null:false |
-| nickname              | string  | null:false |
-| email                 | string  | null:false, unique: true  |
-| encrypted_password    | string  | null:false |
+|  Culumn            | Type    |  Options    |
+| ------------------ | ------- | ----------- |
+| myoji              | string  | null: false |
+| name               | string  | null: false |
+| myoji-kana         | string  | null: false |
+| mei-kana           | string  | null: false |
+| ruby               | string  | null: false |
+| birthday           | date    | null: false |
+| nickname           | string  | null: false |
+| email              | string  | null: false, unique: true  |
+| encrypted_password | string  | null: false |
 
 ### Association
 - has_many :items
@@ -22,15 +25,15 @@
 
 |  Culumn             | Type       |  Options   |
 | ------------------- | ---------- | ---------- |
-| name                | string     | null:false |
-| text                | text       | null:false |
-| category_id         | references | null: false, foreign_key: true |
-| status_id           | references | null: false, foreign_key: true |
-| delivery_fee_id     | references | null: false, foreign_key: true |
-| shipping_address_id | references | null: false, foreign_key: true |
-| shipping_days_id    | references | null: false, foreign_key: true |
-| amount              | integer    | null:false |
-| user_id             | references | null: false, foreign_key: true |
+| name                | string     | null: false |
+| text                | text       | null: false |
+| category_id         | integer    | null: false, foreign_key: true |
+| status_id           | integer    | null: false, foreign_key: true |
+| delivery_fee_id     | integer    | null: false, foreign_key: true |
+| shipping_address_id | integer    | null: false, foreign_key: true |
+| shipping_days_id    | integer    | null: false, foreign_key: true |
+| amount              | integer    | null: false |
+| user                | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to : category
@@ -44,17 +47,28 @@
 ## Buysテーブル
 
 |  Culumn             | Type       |  Options   |
-| ------------------- | ---------- | ---------- |
+| ------------------- | ---------- | ----------- |
+| user                | references | null: false, foreign_key: true |
+| item                | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to : user
+- belongs_to : item
+- has_one :address
+
+
+## Addressesテーブル
+
+|  Culumn             | Type       |  Options   |
+| ------------------- | ---------- | ----------- |
 | post-code           | integer    | null: false |
-| prefecture_id       | references | null: false, foreign_key: true |
-| city                | text       | null:false |
-| street              | text       | null:false |
-| buildings_name      | text       | null:false |
-| telephone           | integer    | null:false |
-| user_id             | references | null: false, foreign_key: true |
-| item_id             | references | null: false, foreign_key: true |
+| prefecture_id       | integer    | null: false, foreign_key: true |
+| city                | text       | null: false |
+| street              | text       | null: false |
+| buildings_name      | text       |
+| telephone           | integer    | null: false |
+| buy                 | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to : prefecture
-- belongs_to : user
-- belongs_to : item
+- belongs_to : buy
