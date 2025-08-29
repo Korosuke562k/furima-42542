@@ -58,6 +58,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Amount is not a number")
       end
+      it 'ユーザーが紐づいてないと登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
     end
 
     context '出品できない（数値幅）' do
@@ -108,6 +113,11 @@ RSpec.describe Item, type: :model do
         @item.amount = "１２３４５"
         @item.valid?
        expect(@item.errors.full_messages).to include("Amount is not a number")
+      end
+      it '価格に小数点が含まれる場合登録できない' do
+        @item.amount = "12345.9"
+        @item.valid?
+       expect(@item.errors.full_messages).to include("Amount must be an integer")
       end
     end
   end

@@ -1,4 +1,4 @@
-function post () {
+function price () {
   let amount = document.getElementById('item-price')
   let commission = document.getElementById('add-tax-price')
   let total = document.getElementById('profit')
@@ -10,4 +10,5 @@ function post () {
     })
 }
 
-window.addEventListener('turbo:load', post)
+window.addEventListener('turbo:load', price)
+window.addEventListener('turbo:render', price)

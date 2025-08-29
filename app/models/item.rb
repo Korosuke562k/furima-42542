@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
   validates :image, presence: true
   validates :name, :text, presence: true
-  validates :amount, numericality: { greater_than: 299, less_than: 10000000 }
+  validates :amount,presence: true,  numericality: { greater_than: 299, less_than: 10000000, only_integer: true }
 
   # ActiveHashのIDが「1（未選択）」でないことをチェック
   validates :category_id, :status_id, :delivery_fee_id, :shipping_address_id, :shipping_days_id,
