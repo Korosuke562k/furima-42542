@@ -19,12 +19,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が空で登録できない' do
-        @item.name = ""
+        @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
       it '商品説明が空で登録できない' do
-        @item.text = ""
+        @item.text = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Text can't be blank")
       end
@@ -54,14 +54,14 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Shipping days can't be blank")
       end
       it '価格が空で登録できない' do
-        @item.amount = '' 
+        @item.amount = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Amount is not a number")
+        expect(@item.errors.full_messages).to include('Amount is not a number')
       end
       it 'ユーザーが紐づいてないと登録できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
 
@@ -84,40 +84,40 @@ RSpec.describe Item, type: :model do
       it '発送元住所が1の場合登録できない' do
         @item.shipping_address_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping address can't be blank") 
+        expect(@item.errors.full_messages).to include("Shipping address can't be blank")
       end
       it '発送日数が1の場合登録できない' do
         @item.shipping_days_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping days can't be blank") 
+        expect(@item.errors.full_messages).to include("Shipping days can't be blank")
       end
       it '価格が300円未満の場合登録できない' do
         @item.amount = '10'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Amount must be greater than 299") 
+        expect(@item.errors.full_messages).to include('Amount must be greater than 299')
       end
       it '価格が100,000円以上の場合登録できない' do
         @item.amount = '10000000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Amount must be less than 10000000") 
+        expect(@item.errors.full_messages).to include('Amount must be less than 10000000')
       end
     end
 
-    context  '出品できない（その他）' do
+    context '出品できない（その他）' do
       it '価格が文字の場合登録できない' do
-        @item.amount = "あいうえお"
+        @item.amount = 'あいうえお'
         @item.valid?
-       expect(@item.errors.full_messages).to include("Amount is not a number")
+        expect(@item.errors.full_messages).to include('Amount is not a number')
       end
       it '価格が全角数字の場合登録できない' do
-        @item.amount = "１２３４５"
+        @item.amount = '１２３４５'
         @item.valid?
-       expect(@item.errors.full_messages).to include("Amount is not a number")
+        expect(@item.errors.full_messages).to include('Amount is not a number')
       end
       it '価格に小数点が含まれる場合登録できない' do
-        @item.amount = "12345.9"
+        @item.amount = '12345.9'
         @item.valid?
-       expect(@item.errors.full_messages).to include("Amount must be an integer")
+        expect(@item.errors.full_messages).to include('Amount must be an integer')
       end
     end
   end
