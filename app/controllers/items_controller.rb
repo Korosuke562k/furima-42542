@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_items, only: [:edit, :show, :update]
+  before_action :set_items, only: [:edit, :show, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
 
@@ -12,7 +12,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-      # @item = Item.find(params[:id])
   end
 
   def create
@@ -26,20 +25,26 @@ class ItemsController < ApplicationController
   end
 
   def edit
-      # @item = Item.find(params[:id])
-      unless @item.user_id == current_user.id
-        redirect_to root_path
-      end
+    unless @item.user_id == current_user.id
+      redirect_to root_path
+    end
   end
 
   def update
-      # @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to { @item.id }
     else
       @user = @item
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    unless @item.user_id == current_user.id
+      redirect_to root_path
+    end
+    @item.destroy
+    redirect_to root_path
   end
 
   private
