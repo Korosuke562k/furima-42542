@@ -9,6 +9,9 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+  has_one :buy
+  enum sold: {not_sold: 0, sold: 1}
+
 
   validates :image, presence: true
   validates :name, :text, presence: true

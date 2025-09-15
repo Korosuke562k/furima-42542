@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+       @item.not_sold!
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -26,6 +27,9 @@ class ItemsController < ApplicationController
 
   def edit
     unless @item.user_id == current_user.id
+      redirect_to root_path
+    end
+    if @item.user == current_user && @item.sold == 1
       redirect_to root_path
     end
   end
@@ -50,7 +54,8 @@ class ItemsController < ApplicationController
   private
     def item_params
       params.require(:item).permit(:name, :text, :category_id, :status_id,
-                                  :delivery_fee_id, :shipping_address_id, :shipping_days_id, :amount, :image).merge(user_id: current_user.id)
+      :delivery_fee_id, :shipping_address_id, :shipping_days_id, :amount, :image, :status)
+      .merge(user_id: current_user.id)
     end
 
     def set_items
