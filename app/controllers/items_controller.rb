@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
     unless @item.user_id == current_user.id
       redirect_to root_path
     end
-    if @item.user == current_user && @item.sold
+    if @item.user == current_user && @item.sold?
       redirect_to root_path
     end
   end

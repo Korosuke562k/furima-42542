@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe BuyAddress, type: :model do
   before do
-    @user = create(:user)
-    @item = create(:item)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
     @buy_address = FactoryBot.build(:buy_address, user_id: @user.id, item_id: @item.id)
   end
 
