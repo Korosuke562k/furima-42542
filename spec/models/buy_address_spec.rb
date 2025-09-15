@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe BuyAddress, type: :model do
   before do
-    @buy_address = FactoryBot.build(:buy_address)
+    @user = create(:user)
+    @item = create(:item)
+    @buy_address = FactoryBot.build(:buy_address, user_id: @user.id, item_id: @item.id)
   end
 
   describe '商品購入機能' do
@@ -66,17 +68,17 @@ RSpec.describe BuyAddress, type: :model do
       it '電話番号にハイフンがある場合登録できない' do
         @buy_address.telephone = "080-1111-1111"
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Telephone  must be 10 or 11 digit Half-width numbers")
+        expect(@buy_address.errors.full_messages).to include("Telephone must be 10 or 11 digit Half-width numbers")
       end
       it '電話番号が9桁以下の場合入力できない' do
         @buy_address.telephone = "080123456"
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Telephone  must be 10 or 11 digit Half-width numbers")
+        expect(@buy_address.errors.full_messages).to include("Telephone must be 10 or 11 digit Half-width numbers")
       end
       it '電話番号が12桁以上の場合入力できない' do
         @buy_address.telephone = "080123456789"
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Telephone  must be 10 or 11 digit Half-width numbers")
+        expect(@buy_address.errors.full_messages).to include("Telephone must be 10 or 11 digit Half-width numbers")
       end
       it 'ユーザーIDが空白の場合登録できない' do
         @buy_address.user_id = nil

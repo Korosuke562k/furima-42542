@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @item = Item.find(params[:item_id])
+    set_items
     @buy_address = BuyAddress.new
   end
 
@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
 def create
-  @item = Item.find(params[:item_id])
+  set_items
   @buy_address = BuyAddress.new(buy_params)
   if @buy_address.valid?
     pay_item
@@ -43,11 +43,16 @@ end
       )
     end
 
+    def set_items
+      @item = Item.find(params[:item_id])
+    end
+
     def login
       @item = Item.find(params[:item_id])
       if @item.sold? || @item.user_id == current_user.id
         redirect_to root_path
       end
+    end
   end
 
 end

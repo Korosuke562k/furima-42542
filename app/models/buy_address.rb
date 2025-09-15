@@ -11,8 +11,8 @@ class BuyAddress
   with_options presence: true do 
     validates :shipping_address_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}/, message: "is valid. Include hyphen(-)" }
-    validates :token, :city, :street, :user_id, :item_id
-    validates :telephone, format: { with: /\A\d{10,11}\z/, message: " must be 10 or 11 digit Half-width numbers"} 
+    validates :token, :city, :street, :user_id, :item_id, presence: true
+    validates :telephone, format: { with: /\A\d{10,11}\z/, message: "must be 10 or 11 digit Half-width numbers"} 
   end
 
   def save 

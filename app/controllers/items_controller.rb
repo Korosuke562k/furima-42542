@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
     unless @item.user_id == current_user.id
       redirect_to root_path
     end
-    if @item.user == current_user && @item.sold == 1
+    if @item.user == current_user && @item.sold
       redirect_to root_path
     end
   end
@@ -57,6 +57,7 @@ class ItemsController < ApplicationController
       :delivery_fee_id, :shipping_address_id, :shipping_days_id, :amount, :image, :status)
       .merge(user_id: current_user.id)
     end
+
 
     def set_items
       @item = Item.find(params[:id])
