@@ -6,7 +6,8 @@ function price () {
       e.preventDefault()
         let subtotal = amount.value
         commission.innerHTML = Math.floor(subtotal * 0.1)
-        total.innerHTML = Math.floor(subtotal * 1.1)
+        // total.innerHTML = Math.floor(subtotal * 0.9)
+        total.innerHTML = Math.floor(subtotal - Math.floor(subtotal * 0.1))
     })
 }
 

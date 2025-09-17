@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :login
   before_action :authenticate_user!, only: [:index]
+  before_action :login
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -43,7 +43,7 @@ end
 
 
     def login
-      @item = Item.find(params[:item_id])
+      @item = Item.find(params[:item_id]) 
       if @item.sold? || @item.user_id == current_user.id
         redirect_to root_path
     end
