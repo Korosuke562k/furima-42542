@@ -32,3 +32,5 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 end
+
+set :bundle_env_variables, { 'BUNDLE_FORCE_RUBY_PLATFORM' => 'true' }
